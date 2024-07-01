@@ -1,0 +1,10 @@
+ikea
+apple
+tasmota
+sencor
+amazon
+apple
+xiaomi
+samsung
+panasonic
+parkside

@@ -1,0 +1,9 @@
+{
+  "IPV4": @ipv4,
+  "MAC": @mac,
+  "ID": @id,
+  "TYPE": @type,
+  "LAST_UPDATE": @last_update,
+  "LINK_QUALITY": @link_quality,
+  "DATA": @data
+}

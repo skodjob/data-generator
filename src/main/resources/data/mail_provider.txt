@@ -1,0 +1,6 @@
+email.com
+seznam.cz
+gmail.com
+outlook.com
+yahoo.com
+icloud.com
