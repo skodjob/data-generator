@@ -1,7 +1,7 @@
 Smith
-Müller
+Muller
 Kim
-García
+Skywalker
 Wang
 Johnson
 Santos
@@ -9,10 +9,10 @@ Lopez
 Brown
 Patel
 Li
-González
+Gonzalez
 Nguyen
 Martin
-Rodríguez
+Rodriguez
 Perez
 Lee
 Silva
@@ -32,7 +32,7 @@ Torres
 Sousa
 Tan
 Smith
-Hernández
+Hernandez
 Bashir
 Johnson
 Robinson
