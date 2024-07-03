@@ -4,34 +4,15 @@
  */
 package io.skodjob.loadgenerator.handlers;
 
-import io.skodjob.loadgenerator.Utils;
+import net.datafaker.Faker;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.Locale;
 
 /**
- * This class generates random IoT device data for use in templates.
+ * This class is responsible for generating IoT device data using the Faker library.
  */
 public class IotDevice {
-    private static final Random RANDOM = new Random();
-
-    private static final String STATE_ACTIVE = "active";
-    private static final String STATE_INACTIVE = "inactive";
-    private static final String STATE_ERROR = "error";
-    private static final String STATE_ON = "on";
-    private static final String STATE_OFF = "off";
-    private static final List<String> ACTIVITY_STATES = Arrays.asList(STATE_ACTIVE, STATE_INACTIVE, STATE_ERROR);
-    private static final List<String> POWER_STATES = Arrays.asList(STATE_ON, STATE_OFF);
-
-    private static final String BEHAVIOR_ON = STATE_ON;
-    private static final String BEHAVIOR_OFF = STATE_OFF;
-    private static final String BEHAVIOR_TOGGLE = "toggle";
-    private static final String BEHAVIOR_PREVIOUS = "previous";
-    private static final List<String> BEHAVIORS = Arrays.asList(
-        BEHAVIOR_ON, BEHAVIOR_OFF, BEHAVIOR_TOGGLE, BEHAVIOR_PREVIOUS);
-    private static final List<String> VENDORS;
+    private static final Faker FAKER = new Faker();
 
     private static final String TYPE_LIGHT = "light";
     private static final String TYPE_BUTTON = "button";
@@ -40,128 +21,67 @@ public class IotDevice {
     private static final String TYPE_CUSTOM = "custom";
     private static final String TYPE_GATE = "gate";
 
-    private static final List<String> TYPES = Arrays.asList(TYPE_LIGHT, TYPE_BUTTON, TYPE_THERMOMETER,
-        TYPE_PLUG, TYPE_CUSTOM, TYPE_GATE);
-
-    static {
-        try {
-            VENDORS = Utils.loadData("/data/iot_vendors.txt");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     /**
-     * Default constructor
-     */
-    private IotDevice() {
-
-    }
-
-    /**
-     * Generates a random IoT device type.
+     * Generates a random power state (on/off).
      *
-     * @return A random IoT device type.
-     */
-    private static String generateType() {
-        return TYPES.get(RANDOM.nextInt(TYPES.size()));
-    }
-
-    /**
-     * Generates a random IPv4 address.
-     *
-     * @return A random IPv4 address.
-     */
-    private static String generateIPv4() {
-        return RANDOM.nextInt(256) + "." + RANDOM.nextInt(256) + "." + RANDOM.nextInt(256) + "." + RANDOM.nextInt(256);
-    }
-
-    /**
-     * Generates a random activity state.
-     *
-     * @return A random activity state.
-     */
-    private static String generateActivityState() {
-        return ACTIVITY_STATES.get(RANDOM.nextInt(ACTIVITY_STATES.size()));
-    }
-
-    /**
-     * Generates a random power state.
-     *
-     * @return A random power state.
+     * @return a randomly generated power state
      */
     private static String generatePowerState() {
-        return POWER_STATES.get(RANDOM.nextInt(POWER_STATES.size()));
+        return FAKER.options().option("on", "off");
     }
 
     /**
-     * Generates a random MAC address.
+     * Generates a random power on behavior (on/off/toggle/previous).
      *
-     * @return A random MAC address.
+     * @return a randomly generated power on behavior
      */
-    private static String generateMacAddress() {
-        byte[] macAddr = new byte[6];
-        RANDOM.nextBytes(macAddr);
-
-        macAddr[0] = (byte) (macAddr[0] & (byte) 254);
-
-        StringBuilder mac = new StringBuilder(18);
-        for (byte b : macAddr) {
-            if (mac.length() > 0) mac.append(":");
-            mac.append(String.format("%02x", b));
-        }
-        return mac.toString();
+    private static String generatePowerOnBehavior() {
+        return FAKER.options().option("on", "off", "toggle", "previous");
     }
 
     /**
-     * Generates a random ID.
+     * Generates a random vendor name.
      *
-     * @return A random ID.
+     * @return a randomly generated vendor name
      */
-    private static String generateId() {
-        return String.valueOf(RANDOM.nextInt(1000000));
+    private static String generateVendor() {
+        return FAKER.options().option("ikea", "apple", "tasmota", "sencor", "amazon", "google", "xiaomi");
     }
 
     /**
-     * Generates the current timestamp.
+     * Generates a random activity state (active/inactive/error).
      *
-     * @return The current timestamp.
+     * @return a randomly generated activity state
      */
-    private static String generateLastUpdate() {
-        return String.valueOf(System.currentTimeMillis());
+    private static String generateActivityState() {
+        return FAKER.options().option("active", "inactive", "error");
     }
 
     /**
-     * Generates a random link quality (0-100).
+     * Generates a JSON data section for the specified device type.
      *
-     * @return A random link quality.
+     * @param type the type of the device
+     * @return a JSON string representing the data section for the specified device type
      */
-    private static String generateLinkQuality() {
-        return String.format("%s", RANDOM.nextInt(101));
-    }
-
-    /**
-     * Generates data for a specific IoT device type.
-     *
-     * @param type The type of the IoT device.
-     * @return The generated data for the IoT device.
-     */
-    private static String generateData(String type) {
+    private static String generateDataSection(String type) {
         switch (type) {
             case TYPE_LIGHT:
                 return String.format("{\"power\": \"%s\", \"brightness\": %d, \"power_on_behavior\": \"%s\"}",
-                    generatePowerState(), RANDOM.nextInt(255), generatePowerOnBehavior());
+                    generatePowerState(), FAKER.number().numberBetween(0, 254), generatePowerOnBehavior());
             case TYPE_PLUG:
                 return String.format("{\"power\": \"%s\", \"energy_current\": {\"state\": %.3f, \"unit\": \"A\"}, " +
                         "\"energy_today\": {\"state\": %.3f, \"unit\": \"kWh\"}}",
-                    generatePowerState(), RANDOM.nextDouble(), RANDOM.nextDouble() * 10);
+                    generatePowerState(), FAKER.number().randomDouble(3, 0, 1),
+                    FAKER.number().randomDouble(3, 0, 10));
             case TYPE_BUTTON:
                 return String.format("{\"power\": \"%s\", \"battery\": {\"value\": %d, \"unit\": \"%%\"}}",
-                    generatePowerState(), RANDOM.nextInt(101));
+                    generatePowerState(), FAKER.number().numberBetween(0, 100));
             case TYPE_THERMOMETER:
                 return String.format("{\"temperature\": %.2f, \"humidity\": %.2f, " +
                         "\"battery\": {\"value\": %d, \"unit\": \"%%\"}}",
-                    RANDOM.nextDouble() * 70 - 30, RANDOM.nextDouble() * 80 + 10, RANDOM.nextInt(101));
+                    FAKER.number().randomDouble(2, -30, 40),
+                    FAKER.number().randomDouble(2, 10, 90),
+                    FAKER.number().numberBetween(0, 100));
             case TYPE_GATE:
                 return String.format("{\"vendor\": \"%s\", \"state\": \"%s\"}",
                     generateVendor(), generateActivityState());
@@ -171,39 +91,28 @@ public class IotDevice {
     }
 
     /**
-     * Generates a random power-on behavior.
+     * Generates IoT device data using the Faker library.
      *
-     * @return A random power-on behavior.
+     * @return the generated IoT device data as a JSON string
      */
-    private static String generatePowerOnBehavior() {
-        return BEHAVIORS.get(RANDOM.nextInt(BEHAVIORS.size()));
-    }
+    public static String generateData() {
+        String ipv4 = FAKER.internet().ipV4Address();
+        String mac = FAKER.internet().macAddress();
+        String id = String.valueOf(FAKER.number().numberBetween(10000, 999999));
+        String type = FAKER.options().option(TYPE_LIGHT, TYPE_BUTTON, TYPE_THERMOMETER,
+            TYPE_PLUG, TYPE_CUSTOM, TYPE_GATE);
+        String lastUpdate = String.valueOf(System.currentTimeMillis());
+        int linkQuality = FAKER.number().numberBetween(0, 100);
+        String data = generateDataSection(type);
 
-    /**
-     * Generates a random vendor.
-     *
-     * @return A random vendor.
-     */
-    private static String generateVendor() {
-        return VENDORS.get(RANDOM.nextInt(VENDORS.size()));
-    }
-
-    /**
-     * Fills the template with random IoT device data.
-     *
-     * @param template The template to be filled.
-     * @return The filled template.
-     */
-    public static String fillTemplate(String template) {
-        String type = generateType();
-        template = template.replace("@ipv4", "\"%s\"".formatted(generateIPv4()));
-        template = template.replace("@mac", "\"%s\"".formatted(generateMacAddress()));
-        template = template.replace("@id", "\"%s\"".formatted(generateId()));
-        template = template.replace("@type", "\"" + type + "\"");
-        template = template.replace("@last_update", "\"%s\"".formatted(generateLastUpdate()));
-        template = template.replace("@link_quality", generateLinkQuality());
-        template = template.replace("@data", generateData(type));
-
-        return template;
+        return String.format(Locale.US,
+            "{\"IPV4\":\"%s\"," +
+                "\"MAC\":\"%s\"," +
+                "\"ID\":\"%s\"," +
+                "\"TYPE\":\"%s\"," +
+                "\"LAST_UPDATE\":\"%s\"," +
+                "\"LINK_QUALITY\":%d," +
+                "\"DATA\":%s}",
+            ipv4, mac, id, type, lastUpdate, linkQuality, data);
     }
 }

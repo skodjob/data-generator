@@ -70,14 +70,14 @@ class DataGeneratorTest {
     public static Stream<Arguments> testRepeatedParameters() {
         String peopleRegex = "\\{"
             + "\"employee_id\":\"\\d+\","
-            + "\"first_name\":\"[A-Za-z]+\","
-            + "\"last_name\":\"[A-Za-z]+\","
+            + "\"first_name\":\"[A-Za-z']+\","
+            + "\"last_name\":\"[A-Za-z']+\","
             + "\"age\":\\d+,"
             + "\"ssn\":\"\\d+-\\d+-\\d+\","
             + "\"hourly_rate\":\\d+\\.\\d+,"
             + "\"gender\":\"(Male|Female)\","
             + "\"email\":\"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\","
-            + "\"company\":\"[A-Za-z-& ]+\""
+            + "\"company\":\"[A-Za-z-&\\.\\,\\-' ]+\""
             + "\\}";
 
         String iotRegex = "\\{"

@@ -11,25 +11,22 @@ public enum ETemplateType {
     /**
      * Template for People Payrol data
      */
-    PAYROLL_EMPLOYEE("payroll_employee", "templates/payroll_employee.json"),
+    PAYROLL_EMPLOYEE("payroll_employee"),
 
     /**
      * Template for IoT device data
      */
-    IOT_DEVICE("iot_device", "templates/iot_device.json");
+    IOT_DEVICE("iot_device");
 
     private final String templateName;
-    private final String templatePath;
 
     /**
      * Constructor for ETemplateType.
      *
      * @param templateName the name of the template
-     * @param templatePath the path to the template file
      */
-    ETemplateType(String templateName, String templatePath) {
+    ETemplateType(String templateName) {
         this.templateName = templateName;
-        this.templatePath = templatePath;
     }
 
     /**
@@ -39,14 +36,5 @@ public enum ETemplateType {
      */
     public String getTemplateName() {
         return templateName;
-    }
-
-    /**
-     * Gets the path to the template file.
-     *
-     * @return the path to the template file
-     */
-    public String getTemplatePath() {
-        return templatePath;
     }
 }
