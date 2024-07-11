@@ -2,13 +2,17 @@
  * Copyright Skodjob authors.
  * License: Apache License 2.0 (see the file LICENSE or http://apache.org/licenses/LICENSE-2.0.html).
  */
-package io.skodjob.loadgenerator;
+package io.skodjob.datagenerator;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.skodjob.loadgenerator.enums.ETemplateType;
-import io.skodjob.loadgenerator.handlers.IotDevice;
-import io.skodjob.loadgenerator.handlers.Payroll;
+import io.skodjob.datagenerator.enums.ETemplateType;
+import io.skodjob.datagenerator.handlers.Flights;
+import io.skodjob.datagenerator.handlers.IotDevice;
+import io.skodjob.datagenerator.handlers.PaymentFiat;
+import io.skodjob.datagenerator.handlers.Payroll;
+import io.skodjob.datagenerator.handlers.StarGate;
+import io.skodjob.datagenerator.handlers.StarWars;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -39,10 +43,18 @@ public class DataGenerator {
      */
     public String generateStringData() {
         switch (this.templateType) {
-            case PAYROLL_EMPLOYEE:
+            case PAYROLL:
                 return Payroll.generateData();
             case IOT_DEVICE:
                 return IotDevice.generateData();
+            case STARGATE:
+                return StarGate.generateData();
+            case STARWARS:
+                return StarWars.generateData();
+            case PAYMENT_FIAT:
+                return PaymentFiat.generateData();
+            case FLIGHTS:
+                return Flights.generateData();
             default:
                 throw new IllegalArgumentException("Unknown template type: " + this.templateType);
         }
@@ -59,5 +71,14 @@ public class DataGenerator {
         } catch (Exception e) {
             throw new RuntimeException("Error generating JSON data", e);
         }
+    }
+
+    /**
+     * Return template type ued within the generator
+     *
+     * @return templateType
+     */
+    public ETemplateType getTemplateType() {
+        return templateType;
     }
 }

@@ -2,7 +2,7 @@
  * Copyright Skodjob authors.
  * License: Apache License 2.0 (see the file LICENSE or http://apache.org/licenses/LICENSE-2.0.html).
  */
-package io.skodjob.loadgenerator.handlers;
+package io.skodjob.datagenerator.handlers;
 
 import net.datafaker.Faker;
 
@@ -12,7 +12,20 @@ import java.util.Locale;
  * This class generates random people-related data for use in templates.
  */
 public class Payroll {
+
+    /**
+     * Private constructor to make class static
+     */
+    private Payroll() {
+
+    }
+
     private static final Faker FAKER = new Faker();
+
+    /**
+     * Template name used in the generator
+     */
+    public static final String TEMPLATE_NAME = "payroll";
 
     /**
      * Generates payroll employee data using the Faker library.

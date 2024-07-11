@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.skodjob</groupId>
-    <artifactId>load-generator</artifactId>
+    <artifactId>data-generator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <licenses>
@@ -15,26 +15,26 @@
         </license>
     </licenses>
 
-    <name>load-generator</name>
-    <description>Reasonable load generator for Messaging</description>
-    <url>https://github.com/skodjob/load-generator</url>
+    <name>data-generator</name>
+    <description>Reasonable data generator for Messaging</description>
+    <url>https://github.com/skodjob/data-generator</url>
 
     <scm>
-        <connection>scm:git:git:/github.com/skodjob/load-generator.git</connection>
-        <developerConnection>scm:git:ssh://github.com/skodjob/load-generator.git</developerConnection>
-        <url>https://github.com/skodjob/load-generator</url>
+        <connection>scm:git:git:/github.com/skodjob/data-generator.git</connection>
+        <developerConnection>scm:git:ssh://github.com/skodjob/data-generator.git</developerConnection>
+        <url>https://github.com/skodjob/data-generator</url>
     </scm>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/skodjob/load-generator/issues</url>
+        <url>https://github.com/skodjob/data-generator/issues</url>
     </issueManagement>
 
     <distributionManagement>
         <repository>
             <id>github</id>
             <name>GitHub Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/skodjob/load-generator</url>
+            <url>https://maven.pkg.github.com/skodjob/data-generator</url>
         </repository>
     </distributionManagement>
 
