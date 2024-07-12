@@ -1,6 +1,6 @@
-# Contributing to Test Frame
+# Contributing to Data Generator
 
-First off, thanks for taking the time to contribute! 🎉👍 The following is a set of guidelines for contributing to the Test Frame repository.
+First off, thanks for taking the time to contribute! 🎉👍 The following is a set of guidelines for contributing to the Data Generator repository.
 
 ## Code of Conduct
 
@@ -49,4 +49,4 @@ Please follow the existing code style and conventions used in the project. This 
 - [GitHub Help](https://help.github.com/)
 - [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/)
 
-Thank you for contributing to Test Frame!
+Thank you for contributing to Data Generator!
