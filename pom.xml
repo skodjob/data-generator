@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.skodjob</groupId>
-    <artifactId>load-generator</artifactId>
+    <artifactId>data-generator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <licenses>
@@ -15,26 +15,26 @@
         </license>
     </licenses>
 
-    <name>load-generator</name>
-    <description>Reasonable load generator for Messaging</description>
-    <url>https://github.com/skodjob/load-generator</url>
+    <name>data-generator</name>
+    <description>Reasonable data generator for Messaging</description>
+    <url>https://github.com/skodjob/data-generator</url>
 
     <scm>
-        <connection>scm:git:git:/github.com/skodjob/load-generator.git</connection>
-        <developerConnection>scm:git:ssh://github.com/skodjob/load-generator.git</developerConnection>
-        <url>https://github.com/skodjob/load-generator</url>
+        <connection>scm:git:git:/github.com/skodjob/data-generator.git</connection>
+        <developerConnection>scm:git:ssh://github.com/skodjob/data-generator.git</developerConnection>
+        <url>https://github.com/skodjob/data-generator</url>
     </scm>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/skodjob/load-generator/issues</url>
+        <url>https://github.com/skodjob/data-generator/issues</url>
     </issueManagement>
 
     <distributionManagement>
         <repository>
             <id>github</id>
             <name>GitHub Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/skodjob/load-generator</url>
+            <url>https://maven.pkg.github.com/skodjob/data-generator</url>
         </repository>
     </distributionManagement>
 
@@ -84,6 +84,7 @@
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <junit.platform.version>1.10.2</junit.platform.version>
         <maven.surefire.version>3.3.0</maven.surefire.version>
+        <datafaker.version>2.3.0</datafaker.version>
 
         <jackson-dataformat-yaml.version>2.17.1</jackson-dataformat-yaml.version>
 
@@ -163,6 +164,13 @@
             <artifactId>spotbugs-annotations</artifactId>
             <version>${spotbugs.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.datafaker/datafaker -->
+        <dependency>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>${datafaker.version}</version>
         </dependency>
     </dependencies>
 
