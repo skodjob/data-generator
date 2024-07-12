@@ -80,7 +80,7 @@
         <maven.assembly.version>3.4.2</maven.assembly.version>
         <maven.plugin.plugin.version>3.9.0</maven.plugin.plugin.version>
 
-        <log4j.version>2.17.2</log4j.version>
+        <log4j.version>2.23.1</log4j.version>
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <junit.platform.version>1.10.3</junit.platform.version>
         <maven.surefire.version>3.3.1</maven.surefire.version>
