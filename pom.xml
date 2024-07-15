@@ -72,19 +72,19 @@
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.release>17</maven.compiler.release>
 
-        <maven.source.plugin.version>3.3.0</maven.source.plugin.version>
+        <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
         <maven.deploy.plugin.version>3.1.1</maven.deploy.plugin.version>
         <maven.gpg.version>3.1.0</maven.gpg.version>
         <sonatype.nexus.central>0.4.0</sonatype.nexus.central>
         <maven.javadoc.version>3.7.0</maven.javadoc.version>
-        <maven.assembly.version>3.4.2</maven.assembly.version>
+        <maven.assembly.version>3.7.1</maven.assembly.version>
         <maven.plugin.plugin.version>3.9.0</maven.plugin.plugin.version>
         <maven.gpg.version>3.1.0</maven.gpg.version>
         <maven.assembly.version>3.4.2</maven.assembly.version>
         <sonatype.nexus.central>0.5.0</sonatype.nexus.central>
 
         <log4j.version>2.23.1</log4j.version>
-        <junit.jupiter.version>5.10.2</junit.jupiter.version>
+        <junit.jupiter.version>5.10.3</junit.jupiter.version>
         <junit.platform.version>1.10.3</junit.platform.version>
         <maven.surefire.version>3.3.1</maven.surefire.version>
         <datafaker.version>2.3.1</datafaker.version>
@@ -93,8 +93,8 @@
 
         <!--   Build tools' properties     -->
         <spotbugs.version>4.8.6</spotbugs.version>
-        <maven.spotbugs.version>4.8.6.1</maven.spotbugs.version>
-        <maven.checkstyle.version>3.3.0</maven.checkstyle.version>
+        <maven.spotbugs.version>4.8.6.2</maven.spotbugs.version>
+        <maven.checkstyle.version>3.4.0</maven.checkstyle.version>
 
         <it.skip>true</it.skip>
         <!--suppress UnresolvedMavenProperty -->
