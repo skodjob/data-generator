@@ -84,6 +84,7 @@
         <sonatype.nexus.central>0.5.0</sonatype.nexus.central>
 
         <log4j.version>2.23.1</log4j.version>
+        <slf4j.version>2.0.13</slf4j.version>
         <junit.jupiter.version>5.10.3</junit.jupiter.version>
         <junit.platform.version>1.10.3</junit.platform.version>
         <maven.surefire.version>3.3.1</maven.surefire.version>
@@ -161,6 +162,11 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.spotbugs</groupId>
