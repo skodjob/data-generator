@@ -93,7 +93,7 @@
 
         <!--   Build tools' properties     -->
         <spotbugs.version>4.8.6</spotbugs.version>
-        <maven.spotbugs.version>4.8.6.1</maven.spotbugs.version>
+        <maven.spotbugs.version>4.8.6.2</maven.spotbugs.version>
         <maven.checkstyle.version>3.4.0</maven.checkstyle.version>
 
         <it.skip>true</it.skip>
