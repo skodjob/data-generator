@@ -64,4 +64,19 @@ public enum ETemplateType {
     public String getTemplateName() {
         return templateName;
     }
+
+    /**
+     * Gets the name of the template based on String name
+     *
+     * @param value string representation of template name
+     * @return specific template
+     */
+    public static ETemplateType getFromString(String value) {
+        for (ETemplateType type : values()) {
+            if (type.toString().equalsIgnoreCase(value)) {
+                return type;
+            }
+        }
+        return null;
+    }
 }
