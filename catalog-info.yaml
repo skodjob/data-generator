@@ -1,0 +1,23 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: data-generator
+  title: Data Generator
+  namespace: quality-community
+  description: |
+    Java library for generating random and pseudo-random data used to simulate real-world workloads.
+  annotations:
+    github.com/project-slug: 'skodjob/data-generator'
+  tags:
+    - java
+    - test-framework
+  links:
+    - title: Help
+      url: https://github.com/skodjob/data-generator/blob/main/README.md
+      icon: help
+spec:
+  type: library
+  lifecycle: production
+  owner: group:redhat/skodjob
+  domain: quality-community/quality-community
