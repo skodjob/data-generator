@@ -1,0 +1,171 @@
+{
+  "type": "record",
+  "name": "IotDevice",
+  "namespace": "io.skodjob.datagenerator.models.iotdevice",
+  "fields": [
+    {
+      "name": "IPV4",
+      "type": "string"
+    },
+    {
+      "name": "MAC",
+      "type": "string"
+    },
+    {
+      "name": "ID",
+      "type": "string"
+    },
+    {
+      "name": "TYPE",
+      "type": "string"
+    },
+    {
+      "name": "LAST_UPDATE",
+      "type": "string"
+    },
+    {
+      "name": "LINK_QUALITY",
+      "type": "int"
+    },
+    {
+      "name": "DATA",
+      "type": [
+        {
+          "type": "record",
+          "name": "CustomData",
+          "fields": [
+            {
+              "name": "info",
+              "type": "string"
+            },
+            {
+              "name": "state",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "ButtonData",
+          "fields": [
+            {
+              "name": "power",
+              "type": "string"
+            },
+            {
+              "name": "battery",
+              "type": {
+                "type": "record",
+                "name": "Battery",
+                "fields": [
+                  {
+                    "name": "value",
+                    "type": "int"
+                  },
+                  {
+                    "name": "unit",
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "PlugData",
+          "fields": [
+            {
+              "name": "power",
+              "type": "string"
+            },
+            {
+              "name": "energy_current",
+              "type": {
+                "type": "record",
+                "name": "EnergyCurrent",
+                "fields": [
+                  {
+                    "name": "state",
+                    "type": "float"
+                  },
+                  {
+                    "name": "unit",
+                    "type": "string"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "energy_today",
+              "type": {
+                "type": "record",
+                "name": "EnergyToday",
+                "fields": [
+                  {
+                    "name": "state",
+                    "type": "float"
+                  },
+                  {
+                    "name": "unit",
+                    "type": "string"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "ThermometerData",
+          "fields": [
+            {
+              "name": "temperature",
+              "type": "float"
+            },
+            {
+              "name": "humidity",
+              "type": "float"
+            },
+            {
+              "name": "battery",
+              "type": "io.skodjob.datagenerator.models.iotdevice.Battery"
+            }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "GateData",
+          "fields": [
+            {
+              "name": "vendor",
+              "type": "string"
+            },
+            {
+              "name": "state",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "LightData",
+          "fields": [
+            {
+              "name": "power",
+              "type": "string"
+            },
+            {
+              "name": "brightness",
+              "type": "int"
+            },
+            {
+              "name": "power_on_behavior",
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

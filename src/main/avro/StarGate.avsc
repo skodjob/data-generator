@@ -1,0 +1,39 @@
+{
+  "type": "record",
+  "name": "StarGate",
+  "namespace": "io.skodjob.datagenerator.models.stargate",
+  "fields": [
+    {
+      "name": "character_name",
+      "type": "string"
+    },
+    {
+      "name": "source_planet",
+      "type": "string"
+    },
+    {
+      "name": "target_planet",
+      "type": "string"
+    },
+    {
+      "name": "quote",
+      "type": "string"
+    },
+    {
+      "name": "duration",
+      "type": "int"
+    },
+    {
+      "name": "duration_unit",
+      "type": "string"
+    },
+    {
+      "name": "distance",
+      "type": "int"
+    },
+    {
+      "name": "distance_unit",
+      "type": "string"
+    }
+  ]
+}

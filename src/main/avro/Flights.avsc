@@ -1,0 +1,81 @@
+{
+  "type": "record",
+  "name": "FlightRecord",
+  "namespace": "io.skodjob.datagenerator.models.flights",
+  "fields": [
+    {
+      "name": "passenger",
+      "type": {
+        "type": "record",
+        "name": "Passenger",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "passport_number",
+            "type": "string"
+          },
+          {
+            "name": "nationality",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "flight",
+      "type": {
+        "type": "record",
+        "name": "Flight",
+        "fields": [
+          {
+            "name": "number",
+            "type": "string"
+          },
+          {
+            "name": "departure_airport",
+            "type": "string"
+          },
+          {
+            "name": "arrival_airport",
+            "type": "string"
+          },
+          {
+            "name": "departure_time",
+            "type": "string"
+          },
+          {
+            "name": "arrival_time",
+            "type": "string"
+          },
+          {
+            "name": "seat_number",
+            "type": "string"
+          },
+          {
+            "name": "gate",
+            "type": "string"
+          },
+          {
+            "name": "boarding_group",
+            "type": "string"
+          },
+          {
+            "name": "plane_model",
+            "type": "string"
+          },
+          {
+            "name": "airline",
+            "type": "string"
+          }
+        ]
+      }
+    }
+  ]
+}

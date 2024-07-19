@@ -4,12 +4,12 @@
  */
 package io.skodjob.datagenerator.enums;
 
-import io.skodjob.datagenerator.handlers.Flights;
-import io.skodjob.datagenerator.handlers.IotDevice;
-import io.skodjob.datagenerator.handlers.PaymentFiat;
-import io.skodjob.datagenerator.handlers.Payroll;
-import io.skodjob.datagenerator.handlers.StarGate;
-import io.skodjob.datagenerator.handlers.StarWars;
+import io.skodjob.datagenerator.handlers.FlightsHandler;
+import io.skodjob.datagenerator.handlers.IotDeviceHandler;
+import io.skodjob.datagenerator.handlers.PaymentFiatHandler;
+import io.skodjob.datagenerator.handlers.PayrollHandler;
+import io.skodjob.datagenerator.handlers.StarGateHandler;
+import io.skodjob.datagenerator.handlers.StarWarsHandler;
 
 /**
  * Enum representing different template types for use in the load generator.
@@ -18,32 +18,32 @@ public enum ETemplateType {
     /**
      * Template for People Payrol data
      */
-    PAYROLL(Payroll.TEMPLATE_NAME),
+    PAYROLL(PayrollHandler.TEMPLATE_NAME),
 
     /**
      * Template for IoT device data
      */
-    IOT_DEVICE(IotDevice.TEMPLATE_NAME),
+    IOT_DEVICE(IotDeviceHandler.TEMPLATE_NAME),
 
     /**
      * Template for StarGate data
      */
-    STARGATE(StarGate.TEMPLATE_NAME),
+    STARGATE(StarGateHandler.TEMPLATE_NAME),
 
     /**
      * Template for StarWars data
      */
-    STARWARS(StarWars.TEMPLATE_NAME),
+    STARWARS(StarWarsHandler.TEMPLATE_NAME),
 
     /**
      * Template for Payment data
      */
-    PAYMENT_FIAT(PaymentFiat.TEMPLATE_NAME),
+    PAYMENT_FIAT(PaymentFiatHandler.TEMPLATE_NAME),
 
     /**
      * Template for Flights data
      */
-    FLIGHTS(Flights.TEMPLATE_NAME);
+    FLIGHTS(FlightsHandler.TEMPLATE_NAME);
 
     private final String templateName;
 

@@ -7,12 +7,12 @@ package io.skodjob.datagenerator;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.skodjob.datagenerator.enums.ETemplateType;
-import io.skodjob.datagenerator.handlers.Flights;
-import io.skodjob.datagenerator.handlers.IotDevice;
-import io.skodjob.datagenerator.handlers.PaymentFiat;
-import io.skodjob.datagenerator.handlers.Payroll;
-import io.skodjob.datagenerator.handlers.StarGate;
-import io.skodjob.datagenerator.handlers.StarWars;
+import io.skodjob.datagenerator.handlers.FlightsHandler;
+import io.skodjob.datagenerator.handlers.IotDeviceHandler;
+import io.skodjob.datagenerator.handlers.PaymentFiatHandler;
+import io.skodjob.datagenerator.handlers.PayrollHandler;
+import io.skodjob.datagenerator.handlers.StarGateHandler;
+import io.skodjob.datagenerator.handlers.StarWarsHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -41,20 +41,20 @@ public class DataGenerator {
      *
      * @return the generated string data
      */
-    public String generateStringData() {
+    public String generateData() {
         switch (this.templateType) {
             case PAYROLL:
-                return Payroll.generateData();
+                return PayrollHandler.generateData();
             case IOT_DEVICE:
-                return IotDevice.generateData();
+                return IotDeviceHandler.generateData();
             case STARGATE:
-                return StarGate.generateData();
+                return StarGateHandler.generateData();
             case STARWARS:
-                return StarWars.generateData();
+                return StarWarsHandler.generateData();
             case PAYMENT_FIAT:
-                return PaymentFiat.generateData();
+                return PaymentFiatHandler.generateData();
             case FLIGHTS:
-                return Flights.generateData();
+                return FlightsHandler.generateData();
             default:
                 throw new IllegalArgumentException("Unknown template type: " + this.templateType);
         }
@@ -67,7 +67,7 @@ public class DataGenerator {
      */
     public JsonNode generateJsonData() {
         try {
-            return new ObjectMapper().readTree(generateStringData());
+            return new ObjectMapper().readTree(generateData());
         } catch (Exception e) {
             throw new RuntimeException("Error generating JSON data", e);
         }
