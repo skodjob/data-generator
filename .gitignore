@@ -32,3 +32,6 @@ target/
 
 ### Mac OS ###
 **.DS_Store
+
+# Generated Avro models that should be excluded
+src/main/java/io/skodjob/datagenerator/models/*
