@@ -13,8 +13,8 @@ import io.skodjob.datagenerator.handlers.PaymentFiatHandler;
 import io.skodjob.datagenerator.handlers.PayrollHandler;
 import io.skodjob.datagenerator.handlers.StarGateHandler;
 import io.skodjob.datagenerator.handlers.StarWarsHandler;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
@@ -22,7 +22,7 @@ import java.util.Objects;
  * This class is responsible for generating data based on specified templates.
  */
 public class DataGenerator {
-    private static final Logger LOGGER = LogManager.getLogger(DataGenerator.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataGenerator.class);
 
     private final ETemplateType templateType;
 
