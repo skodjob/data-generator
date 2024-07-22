@@ -13,6 +13,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -41,10 +42,10 @@ class DataGeneratorTest {
 
     @ParameterizedTest(name = "{0}")
     @MethodSource("testRepeatedParameters")
-    void testValidateGeneratedData(String testName, String regex, DataGenerator generator) {
+    void testValidateGeneratedData(String testName, String regex, DataGenerator generator) throws IOException {
         Pattern dataPattern = Pattern.compile(regex);
 
-        String data = generator.generateStringData();
+        String data = generator.generateJsonData().toString();
         assertNotNull(data, "Generated string data should not be null for PAYROLL_EMPLOYEE");
 
         Matcher matcher = dataPattern.matcher(data);
@@ -69,12 +70,12 @@ class DataGeneratorTest {
 
     public Stream<Arguments> testRepeatedParameters() {
         String peopleRegex = "\\{"
-            + "\"employee_id\":\"\\d+\","
-            + "\"first_name\":\"[A-Za-z']+\","
-            + "\"last_name\":\"[A-Za-z']+\","
+            + "\"employeeId\":\"\\d+\","
+            + "\"firstName\":\"[A-Za-z']+\","
+            + "\"lastName\":\"[A-Za-z']+\","
             + "\"age\":\\d+,"
             + "\"ssn\":\"\\d+-\\d+-\\d+\","
-            + "\"hourly_rate\":\\d+\\.\\d+,"
+            + "\"hourlyRate\":\\d+\\.\\d+,"
             + "\"gender\":\"(Male|Female)\","
             + "\"email\":\"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\","
             + "\"company\":\"[A-Za-z-&\\.\\,\\-' ]+\""
@@ -96,7 +97,7 @@ class DataGeneratorTest {
             "\"quote\":\"[^\"]*\"," +
             "\"duration\":[0-9]+," +
             "\"duration_unit\":\"seconds\"," +
-            "\"distance\":\"[0-9]+\"," +
+            "\"distance\":[0-9]+," +
             "\"distance_unit\":\"light_year\"\\}";
 
         String starWarsRegex = "\\{\"character_name\":\"[\\w\\s'-]+\"," +
@@ -109,33 +110,33 @@ class DataGeneratorTest {
             "\"wookieWords\":\"[^\"]*\"," +
             "\"alternateCharacterSpelling\":\"[^\"]*\"\\}";
 
-        String paymentFiatRegex = "\\{\"payment\":\\{\"transaction_id\":\"txn_[0-9]{10}\"," +
-            "\"type\":\"(credit_card|bank_transfer|paypal)\"," +
-            "\"amount\":[0-9]+\\.[0-9]{2}," +
+        String paymentFiatRegex = "\\{\"paymentDetails\":\\{\"transactionId\":\"txn_[0-9]{10}\"," +
+            "\"type\":\"(creditCard|bankTransfer|paypal)\"," +
+            "\"amount\":[0-9]+\\.[0-9]{1,}," +
             "\"currency\":\"[A-Z]{1,}\"," +
             "\"date\":\"[0-9T:\\-\\+\\.Z]+\"," +
             "\"status\":\"(completed|pending|failed)\"\\}," +
             "\"payer\":\\{\"name\":\"[^\"]{3,}\"," +
             "\"payerType\":\"(company|person)\"," +
-            "\"account_number\":\"[0-9]{9}\"," +
+            "\"accountNumber\":\"[0-9]{9}\"," +
             "\"bank\":\"[^\"]{3,}\"," +
-            "\"billing_address\":\\{\"street\":\"[^\"]{3,}\"," +
+            "\"billingAddress\":\\{\"street\":\"[^\"]{3,}\"," +
             "\"city\":\"[^\"]{3,}\"," +
             "\"state\":\"[^\"]{3,}\"," +
             "\"country\":\"[^\"]{3,}\"," +
-            "\"postal_code\":\"[^\"]{3,}\"\\}" +
-            "(,\"card_number\":\"[0-9\\-]+\"," +
-            "\"card_type\":\"(Visa|MasterCard|American Express|Revolut|Wise|CityGroup|Barclays)\"," +
-            "\"expiry_date\":\"[0-9\\-]+\")?\\}," +
+            "\"postalCode\":\"[^\"]{3,}\"\\}" +
+            "(,\"cardNumber\":(null|\"[0-9\\-]+\")," +
+            "\"cardType\":(null|\"[^\"]{3,}\")," +
+            "\"expiryDate\":(null|\"[0-9\\-]+\"))?\\}," +
             "\"payee\":\\{\"name\":\"[^\"]{3,}\"," +
             "\"payeeType\":\"(company|person)\"," +
-            "\"account_number\":\"[0-9]{9}\"," +
+            "\"accountNumber\":\"[0-9]{9}\"," +
             "\"bank\":\"[^\"]{3,}\"," +
             "\"address\":\\{\"street\":\"[^\"]{3,}\"," +
             "\"city\":\"[^\"]{3,}\"," +
             "\"state\":\"[^\"]{3,}\"," +
             "\"country\":\"[^\"]{3,}\"," +
-            "\"postal_code\":\"[^\"]{3,}\"\\}\\}\\}";
+            "\"postalCode\":\"[^\"]{3,}\"\\}\\}\\}";
 
         String flightRegex = "\\{" +
             "\"passenger\":\\{" +

@@ -48,7 +48,7 @@ import io.skodjob.datagenerator.enums.ETemplateType;
 public class Main {
     public static void main(String[] args) {
         DataGenerator dataGenerator = new DataGenerator(ETemplateType.PAYMENT_FIAT);
-        String paymentDataString = dataGenerator.generateStringData();
+        String paymentDataString = dataGenerator.generateData();
         JsonNode paymentDataJson = dataGenerator.generateJsonData();
         System.out.println(paymentDataString);
     }
@@ -66,7 +66,7 @@ import io.skodjob.datagenerator.enums.ETemplateType;
 public class Main {
     public static void main(String[] args) {
         DataGenerator dataGenerator = new DataGenerator(ETemplateType.FLIGHTS);
-        String paymentDataString = dataGenerator.generateStringData();
+        String paymentDataString = dataGenerator.generateData();
         JsonNode paymentDataJson = dataGenerator.generateJsonData();
         System.out.println(paymentDataString);
     }

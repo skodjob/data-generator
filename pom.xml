@@ -89,6 +89,7 @@
         <junit.platform.version>1.10.3</junit.platform.version>
         <maven.surefire.version>3.3.1</maven.surefire.version>
         <datafaker.version>2.3.1</datafaker.version>
+        <avro.version>1.11.3</avro.version>
 
         <jackson-dataformat-yaml.version>2.17.2</jackson-dataformat-yaml.version>
 
@@ -100,8 +101,6 @@
         <it.skip>true</it.skip>
         <!--suppress UnresolvedMavenProperty -->
         <ut.skip>${skipTests}</ut.skip>
-
-        <checkstyle.config.location>checkstyle.xml</checkstyle.config.location>
     </properties>
 
     <dependencies>
@@ -181,6 +180,18 @@
             <artifactId>datafaker</artifactId>
             <version>${datafaker.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.avro/avro -->
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>${avro.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.avro/avro-tools -->
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro-tools</artifactId>
+            <version>${avro.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -213,6 +224,8 @@
                     <xmlOutput>true</xmlOutput>
                     <!-- Configures the directory in which the XML report is created -->
                     <spotbugsXmlOutputDirectory>${project.build.directory}/spotbugs</spotbugsXmlOutputDirectory>
+                    <!-- Configures the file for excluding warnings -->
+                    <excludeFilterFile>${project.basedir}/.spotbugs/spotbugs-exclude.xml</excludeFilterFile>
                 </configuration>
             </plugin>
             <plugin>
@@ -229,6 +242,7 @@
                             <show>public</show>
                             <failOnError>true</failOnError>
                             <failOnWarnings>true</failOnWarnings>
+                            <excludePackageNames>io.skodjob.datagenerator.models.*</excludePackageNames>
                         </configuration>
                     </execution>
                 </executions>
@@ -244,6 +258,8 @@
                         <configuration>
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>true</failsOnError>
+                            <configLocation>.checkstyle/checkstyle.xml</configLocation>
+                            <suppressionsLocation>.checkstyle/suppressions.xml</suppressionsLocation>
                         </configuration>
                         <goals>
                             <goal>check</goal>
@@ -326,6 +342,27 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.avro</groupId>
+                        <artifactId>avro-maven-plugin</artifactId>
+                        <version>${avro.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>schema</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <sourceDirectory>${project.basedir}/src/main/avro</sourceDirectory>
+                            <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>central-sonatype</id>

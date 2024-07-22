@@ -1,0 +1,43 @@
+{
+  "type": "record",
+  "name": "StarWars",
+  "namespace": "io.skodjob.datagenerator.models.starwars",
+  "fields": [
+    {
+      "name": "character_name",
+      "type": "string"
+    },
+    {
+      "name": "source_planet",
+      "type": "string"
+    },
+    {
+      "name": "target_planet",
+      "type": "string"
+    },
+    {
+      "name": "quote",
+      "type": "string"
+    },
+    {
+      "name": "callSign",
+      "type": "string"
+    },
+    {
+      "name": "species",
+      "type": "string"
+    },
+    {
+      "name": "vehicle",
+      "type": "string"
+    },
+    {
+      "name": "wookieWords",
+      "type": "string"
+    },
+    {
+      "name": "alternateCharacterSpelling",
+      "type": "string"
+    }
+  ]
+}

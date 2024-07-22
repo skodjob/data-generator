@@ -1,0 +1,147 @@
+{
+  "type": "record",
+  "name": "PaymentFiat",
+  "namespace": "io.skodjob.datagenerator.models.paymentfiat",
+  "fields": [
+    {
+      "name": "paymentDetails",
+      "type": {
+        "type": "record",
+        "name": "PaymentDetails",
+        "fields": [
+          {
+            "name": "transactionId",
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "type": "string"
+          },
+          {
+            "name": "amount",
+            "type": "double"
+          },
+          {
+            "name": "currency",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "payer",
+      "type": {
+        "type": "record",
+        "name": "Payer",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "payerType",
+            "type": "string"
+          },
+          {
+            "name": "accountNumber",
+            "type": "string"
+          },
+          {
+            "name": "bank",
+            "type": "string"
+          },
+          {
+            "name": "billingAddress",
+            "type": {
+              "type": "record",
+              "name": "Address",
+              "fields": [
+                {
+                  "name": "street",
+                  "type": "string"
+                },
+                {
+                  "name": "city",
+                  "type": "string"
+                },
+                {
+                  "name": "state",
+                  "type": "string"
+                },
+                {
+                  "name": "country",
+                  "type": "string"
+                },
+                {
+                  "name": "postalCode",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          {
+            "name": "cardNumber",
+            "type": [
+              "null",
+              "string"
+            ],
+            "default": null
+          },
+          {
+            "name": "cardType",
+            "type": [
+              "null",
+              "string"
+            ],
+            "default": null
+          },
+          {
+            "name": "expiryDate",
+            "type": [
+              "null",
+              "string"
+            ],
+            "default": null
+          }
+        ]
+      }
+    },
+    {
+      "name": "payee",
+      "type": {
+        "type": "record",
+        "name": "Payee",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "payeeType",
+            "type": "string"
+          },
+          {
+            "name": "accountNumber",
+            "type": "string"
+          },
+          {
+            "name": "bank",
+            "type": "string"
+          },
+          {
+            "name": "address",
+            "type": "Address"
+          }
+        ]
+      }
+    }
+  ]
+}
