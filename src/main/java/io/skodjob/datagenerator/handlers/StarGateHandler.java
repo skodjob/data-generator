@@ -37,10 +37,10 @@ public class StarGateHandler {
         starGate.setSourcePlanet(FAKER.stargate().planets());
         starGate.setTargetPlanet(FAKER.stargate().planets());
         starGate.setQuote(FAKER.stargate().quotes());
-        starGate.setDistance(FAKER.number().numberBetween(1, 50));
-        starGate.setDistanceUnit("light_year");
-        starGate.setDuration(FAKER.number().numberBetween(20000, 999999));
+        starGate.setDuration(FAKER.number().numberBetween(1, 50));
         starGate.setDurationUnit("seconds");
+        starGate.setDistance(FAKER.number().numberBetween(20000, 999999));
+        starGate.setDistanceUnit("light_year");
 
         return starGate.toString();
     }
