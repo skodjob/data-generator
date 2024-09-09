@@ -83,7 +83,7 @@
         <maven.assembly.version>3.7.1</maven.assembly.version>
         <sonatype.nexus.central>0.5.0</sonatype.nexus.central>
 
-        <log4j.version>2.23.1</log4j.version>
+        <log4j.version>2.24.0</log4j.version>
         <slf4j.version>2.0.13</slf4j.version>
         <junit.jupiter.version>5.11.0</junit.jupiter.version>
         <junit.platform.version>1.11.0</junit.platform.version>
@@ -95,7 +95,7 @@
 
         <!--   Build tools' properties     -->
         <spotbugs.version>4.8.6</spotbugs.version>
-        <maven.spotbugs.version>4.8.6.2</maven.spotbugs.version>
+        <maven.spotbugs.version>4.8.6.3</maven.spotbugs.version>
         <maven.checkstyle.version>3.5.0</maven.checkstyle.version>
 
         <it.skip>true</it.skip>
