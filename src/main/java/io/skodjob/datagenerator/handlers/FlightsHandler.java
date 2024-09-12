@@ -34,9 +34,9 @@ public class FlightsHandler {
     /**
      * Generates flight data using the Faker library.
      *
-     * @return the generated flight data as a JSON string
+     * @return the generated flight data as an Avro Object
      */
-    public static String generateData() {
+    public static Object generateData() {
         FlightRecord flightRecord = new FlightRecord();
 
         Passenger passenger = new Passenger();
@@ -62,6 +62,6 @@ public class FlightsHandler {
         flightRecord.setPassenger(passenger);
         flightRecord.setFlight(flight);
 
-        return flightRecord.toString();
+        return flightRecord;
     }
 }
