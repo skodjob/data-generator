@@ -29,9 +29,9 @@ public class StarWarsHandler {
     /**
      * Generates StarWars data using the Faker library.
      *
-     * @return the generated StarWars data as a JSON string
+     * @return the generated StarWars data as an Avro Object
      */
-    public static String generateData() {
+    public static Object generateData() {
         StarWars starWars = new StarWars();
         starWars.setCharacterName(FAKER.starWars().character());
         starWars.setSourcePlanet(FAKER.starWars().planets());
@@ -43,6 +43,6 @@ public class StarWarsHandler {
         starWars.setWookieWords(FAKER.starWars().wookieWords());
         starWars.setAlternateCharacterSpelling(FAKER.starWars().alternateCharacterSpelling());
 
-        return starWars.toString();
+        return starWars;
     }
 }

@@ -150,11 +150,11 @@ public class PaymentFiatHandler {
     /**
      * Generates payment data using the Faker library.
      *
-     * @return the generated payment data as a JSON string
+     * @return the generated payment data as an Avro Object
      */
-    public static String generateData() {
+    public static Object generateData() {
         PaymentFiat paymentFiat = generatePaymentFiatData();
 
-        return paymentFiat.toString();
+        return paymentFiat;
     }
 }

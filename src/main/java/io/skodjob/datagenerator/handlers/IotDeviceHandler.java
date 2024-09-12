@@ -81,9 +81,9 @@ public class IotDeviceHandler {
     /**
      * Generates IoT device data using the Faker library.
      *
-     * @return the generated IoT device data as a JSON string
+     * @return the generated IoT device data as an Avro Object
      */
-    public static String generateData() {
+    public static Object generateData() {
         IotDevice iotDevice = new IotDevice();
 
         iotDevice.setIPV4(FAKER.internet().ipV4Address());
@@ -148,6 +148,6 @@ public class IotDeviceHandler {
                 break;
         }
 
-        return iotDevice.toString();
+        return iotDevice;
     }
 }

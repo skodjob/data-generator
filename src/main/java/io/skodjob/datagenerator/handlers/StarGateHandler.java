@@ -29,9 +29,9 @@ public class StarGateHandler {
     /**
      * Generates StarGate data using the Faker library.
      *
-     * @return the generated StarGate data as a JSON string
+     * @return the generated StarGate data as an Avro Object
      */
-    public static String generateData() {
+    public static Object generateData() {
         StarGate starGate = new StarGate();
         starGate.setCharacterName(FAKER.stargate().characters());
         starGate.setSourcePlanet(FAKER.stargate().planets());
@@ -42,6 +42,6 @@ public class StarGateHandler {
         starGate.setDistance(FAKER.number().numberBetween(20000, 999999));
         starGate.setDistanceUnit("light_year");
 
-        return starGate.toString();
+        return starGate;
     }
 }

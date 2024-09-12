@@ -29,9 +29,9 @@ public class PayrollHandler {
     /**
      * Generates payroll employee data using the Faker library.
      *
-     * @return the generated payroll employee data as a JSON string
+     * @return the generated payroll employee data as an Avro Object
      */
-    public static String generateData() {
+    public static Object generateData() {
         Employee employee = new Employee();
 
         employee.setEmployeeId(String.valueOf(FAKER.number().numberBetween(10000, 999999)));
@@ -44,6 +44,6 @@ public class PayrollHandler {
         employee.setEmail(FAKER.internet().emailAddress());
         employee.setCompany(FAKER.company().name());
 
-        return employee.toString();
+        return employee;
     }
 }

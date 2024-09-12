@@ -41,7 +41,7 @@ public class DataGenerator {
      *
      * @return the generated string data
      */
-    public String generateData() {
+    public Object generateData() {
         switch (this.templateType) {
             case PAYROLL:
                 return PayrollHandler.generateData();
@@ -67,7 +67,7 @@ public class DataGenerator {
      */
     public JsonNode generateJsonData() {
         try {
-            return new ObjectMapper().readTree(generateData());
+            return new ObjectMapper().readTree(generateData().toString());
         } catch (Exception e) {
             throw new RuntimeException("Error generating JSON data", e);
         }
