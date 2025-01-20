@@ -4,6 +4,7 @@
  */
 package io.skodjob.datagenerator;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.skodjob.datagenerator.enums.ETemplateType;
@@ -16,6 +17,7 @@ import io.skodjob.datagenerator.handlers.StarWarsHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.Objects;
 
 /**
@@ -64,12 +66,13 @@ public class DataGenerator {
      * Generates JSON data based on the template type.
      *
      * @return the generated JSON data
+     * @throws IOException exception during JSON parsing
      */
-    public JsonNode generateJsonData() {
+    public JsonNode generateJsonData() throws IOException {
         try {
             return new ObjectMapper().readTree(generateData().toString());
-        } catch (Exception e) {
-            throw new RuntimeException("Error generating JSON data", e);
+        } catch (JsonProcessingException e) {
+            throw new IOException("Error generating JSON data", e);
         }
     }
 

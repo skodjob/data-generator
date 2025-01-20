@@ -53,7 +53,7 @@ class DataGeneratorTest {
     }
 
     @Test
-    void testGenerateJsonData() {
+    void testGenerateJsonData() throws IOException {
         checkJsonData(payrollDataGenerator);
         checkJsonData(iotDataGenerator);
         checkJsonData(stargateDataGenerator);
@@ -62,7 +62,7 @@ class DataGeneratorTest {
         checkJsonData(flightsGenerator);
     }
 
-    void checkJsonData(DataGenerator generator) {
+    void checkJsonData(DataGenerator generator) throws IOException {
         JsonNode jsonData = generator.generateJsonData();
         assertNotNull(jsonData, "Generated JSON data should not be null for " + generator.getTemplateType());
         assertTrue(jsonData.isObject(), "Generated JSON data should be a JSON object for " + generator.getTemplateType());
