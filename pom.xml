@@ -81,9 +81,9 @@
         <maven.plugin.plugin.version>3.9.0</maven.plugin.plugin.version>
         <maven.gpg.version>3.2.7</maven.gpg.version>
         <maven.assembly.version>3.7.1</maven.assembly.version>
-        <sonatype.nexus.central>0.7.0</sonatype.nexus.central>
+        <sonatype.nexus.central>0.8.0</sonatype.nexus.central>
 
-        <log4j.version>2.24.3</log4j.version>
+        <log4j.version>2.25.0</log4j.version>
         <slf4j.version>2.0.13</slf4j.version>
         <junit.jupiter.version>5.13.1</junit.jupiter.version>
         <junit.platform.version>1.13.1</junit.platform.version>
