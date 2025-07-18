@@ -4,17 +4,44 @@
  */
 package io.skodjob.datagenerator.enums;
 
-import io.skodjob.datagenerator.handlers.FlightsHandler;
-import io.skodjob.datagenerator.handlers.IotDeviceHandler;
-import io.skodjob.datagenerator.handlers.PaymentFiatHandler;
-import io.skodjob.datagenerator.handlers.PayrollHandler;
-import io.skodjob.datagenerator.handlers.StarGateHandler;
-import io.skodjob.datagenerator.handlers.StarWarsHandler;
+import io.skodjob.datagenerator.handlers.legacy.FlightsHandler;
+import io.skodjob.datagenerator.handlers.legacy.IotDeviceHandler;
+import io.skodjob.datagenerator.handlers.legacy.PaymentFiatHandler;
+import io.skodjob.datagenerator.handlers.legacy.PayrollHandler;
+import io.skodjob.datagenerator.handlers.legacy.StarGateHandler;
+import io.skodjob.datagenerator.handlers.legacy.StarWarsHandler;
+import io.skodjob.datagenerator.handlers.v1.FlightEventHandler;
+import io.skodjob.datagenerator.handlers.v1.IotDeviceTelemetryEventHandler;
+import io.skodjob.datagenerator.handlers.v1.PaymentEventHandler;
+import io.skodjob.datagenerator.handlers.v1.PayrollEventHandler;
 
 /**
  * Enum representing different template types for use in the load generator.
  */
 public enum ETemplateType {
+    /**
+     * Template for PaymentEvent data
+     */
+    PAYMENT_EVENT(PaymentEventHandler.TEMPLATE_NAME),
+
+    /**
+     * Template for FlightEvent data
+     */
+    FLIGHT_EVENT(FlightEventHandler.TEMPLATE_NAME),
+
+    /**
+     * Template for FlightEvent data
+     */
+    IOT_DEVICE_TELEMETRY_EVENT(IotDeviceTelemetryEventHandler.TEMPLATE_NAME),
+
+    /**
+     * Template for Payroll data
+     */
+    PAYROLL_EVENT(PayrollEventHandler.TEMPLATE_NAME),
+
+    /// ///////////
+    ///  Legacy ///
+    /// ///////////
     /**
      * Template for People Payrol data
      */

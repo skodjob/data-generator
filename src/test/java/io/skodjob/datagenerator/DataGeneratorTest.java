@@ -23,6 +23,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class DataGeneratorTest {
+    private DataGenerator paymentEventGenerator;
+    private DataGenerator flightEventGenerator;
+    private DataGenerator iotDeviceTelemetryEventGenerator;
+    private DataGenerator payrollEventGenerator;
+    /// ///////////
+    ///  Legacy ///
+    /// ///////////
     private DataGenerator payrollDataGenerator;
     private DataGenerator iotDataGenerator;
     private DataGenerator stargateDataGenerator;
@@ -30,8 +37,24 @@ class DataGeneratorTest {
     private DataGenerator paymentFiatGenerator;
     private DataGenerator flightsGenerator;
 
+    // reusable JSON-string pattern (allows escaped quotes)
+    private static final String J = "\"(?:[^\"\\\\]|\\\\.)+\"";
+
+    // ISO-8601 instant pattern
+    private static final String ISO = "\"[0-9T:\\-\\.Z]+\"";
+
+    // money bytes appear as random ISO-8859-1 chars → accept any non-quote sequence
+    private static final String MONEY = J;
+
     @BeforeAll
     void setUp() {
+        paymentEventGenerator = new DataGenerator(ETemplateType.PAYMENT_EVENT);
+        flightEventGenerator = new DataGenerator(ETemplateType.FLIGHT_EVENT);
+        iotDeviceTelemetryEventGenerator = new DataGenerator(ETemplateType.IOT_DEVICE_TELEMETRY_EVENT);
+        payrollEventGenerator = new DataGenerator(ETemplateType.PAYROLL_EVENT);
+        /// ///////////
+        ///  Legacy ///
+        /// ///////////
         payrollDataGenerator = new DataGenerator(ETemplateType.PAYROLL);
         iotDataGenerator = new DataGenerator(ETemplateType.IOT_DEVICE);
         stargateDataGenerator = new DataGenerator(ETemplateType.STARGATE);
@@ -45,7 +68,8 @@ class DataGeneratorTest {
     void testValidateGeneratedData(String testName, String regex, DataGenerator generator) throws IOException {
         Pattern dataPattern = Pattern.compile(regex);
 
-        String data = generator.generateJsonData().toString();
+        String data = generator.generateJsonData()
+            .toString();
         assertNotNull(data, "Generated string data should not be null for PAYROLL_EMPLOYEE");
 
         Matcher matcher = dataPattern.matcher(data);
@@ -54,6 +78,13 @@ class DataGeneratorTest {
 
     @Test
     void testGenerateJsonData() throws IOException {
+        checkJsonData(paymentEventGenerator);
+        checkJsonData(flightEventGenerator);
+        checkJsonData(iotDeviceTelemetryEventGenerator);
+        checkJsonData(payrollEventGenerator);
+        /// ///////////
+        ///  Legacy ///
+        /// ///////////
         checkJsonData(payrollDataGenerator);
         checkJsonData(iotDataGenerator);
         checkJsonData(stargateDataGenerator);
@@ -69,6 +100,97 @@ class DataGeneratorTest {
     }
 
     public Stream<Arguments> testRepeatedParameters() {
+        String paymentEventRegex = "\\{"
+            + "\"schemaVersion\":1,"
+            + "\"event_id\":\"[0-9a-f\\-]{36}\","
+            + "\"source\":\"datagen\","
+            + "\"ingested_ts\"\\s*:\\s*\"[0-9T:\\-\\.Z]+\"\\s*,"
+            + "\"transaction_id\":\"[0-9a-f\\-]{36}\","
+            + "\"status\":\"(PENDING|SETTLED|FAILED|REVERSED)\","
+            + "\"transaction_ts\"\\s*:\\s*\"[0-9T:\\-\\.Z]+\"\\s*,"
+            + "\"amount\":\"(?:[^\"\\\\]|\\\\.)+\","
+            + "\"currency\":\"[A-Z]{3}\","
+            + "\"method\":\"(CARD|BANK_TRANSFER|E_WALLET|CRYPTO|CASH)\","
+            + "\"processor\":(null|\"[^\"]+\"),"
+            + "\"parties\":\\[\\{"
+            + "\"party_id\":\"[^\"]+\","
+            + "\"party_type\":\"(PERSON|MERCHANT|INSTITUTION)\","
+            + "\"role\":\"PAYER\"\\},\\{"
+            + "\"party_id\":\"[^\"]+\","
+            + "\"party_type\":\"(PERSON|MERCHANT|INSTITUTION)\","
+            + "\"role\":\"PAYEE\"\\}\\],"
+            + "\"merchant_id\":(null|\"[^\"]+\"),"
+            + "\"card_last4\":(null|\"\\d{4}\")"
+            + "\\}";
+
+        String flightEventRegex =
+            "\\{"
+                + "\"schemaVersion\":1,"
+                + "\"event_id\":\"[0-9a-f\\-]{36}\","
+                + "\"source\":\"datagen\","
+                + "\"ingested_ts\":" + ISO + ","
+                + "\"flight_id\":" + J + ","
+                + "\"airline\":\"[A-Za-z0-9]+\","
+                + "\"origin\":\"[A-Z0-9]{3,4}\","
+                + "\"destination\":\"[A-Z0-9]{3,4}\","
+                + "\"scheduled_departure_ts\":" + ISO + ","
+                + "\"scheduled_arrival_ts\":" + ISO + ","
+                + "\"actual_departure_ts\":(null|" + ISO + "),"
+                + "\"actual_arrival_ts\":(null|" + ISO + "),"
+                + "\"status\":\"(SCHEDULED|BOARDING|TAXI|AIRBORNE|LANDED|CANCELLED|DIVERTED)\","
+                + "\"delay_minutes\":(null|\\d+),"
+                + "\"gate\":(null|" + J + "),"
+                + "\"aircraft_type\":(null|" + J + ")"
+                + "\\}";
+
+        String iotDevicePayload =
+            "\\{\"button_state\":\"(PRESSED|RELEASED)\"\\}"
+                + "|\\{\"light_state\":\"(ON|OFF)\",\"brightness_pct\":(null|\\d{1,3})\\}"
+                + "|\\{\"gate_state\":\"(OPEN|CLOSED)\",\"position_pct\":\\d{1,3}\\}"
+                + "|\\{\"power_state\":\"(ON|OFF)\",\"watts\":(null|[-+]?[0-9]*\\.?[0-9]+)\\}"
+                + "|\\{\"temperature_c\":[-+]?[0-9]*\\.?[0-9]+,\"humidity_pct\":(null|[-+]?[0-9]*\\.?[0-9]+)\\}"
+                + "|\\{\"blob\":" + J + "\\}";
+
+        String iotDeviceTelemetryRegex =
+            "\\{"
+                + "\"schemaVersion\":1,"
+                + "\"event_id\":\"[0-9a-f\\-]{36}\","
+                + "\"source\":\"datagen\","
+                + "\"ingested_ts\":" + ISO + ","
+                + "\"device_id\":" + J + ","
+                + "\"ipv4\":\"\\d{1,3}(?:\\.\\d{1,3}){3}\","
+                + "\"mac\":\"(?:[0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}\","
+                + "\"geo\":\\{\"lat\":" + J + ",\"lon\":" + J + "\\},"
+                + "\"sensor_type\":\"(LIGHT|BUTTON|THERMOMETER|PLUG|CUSTOM|GATE)\","
+                + "\"battery_pct\":\\d{1,3},"
+                + "\"reading_ts\":" + ISO + ","
+                + "\"status\":\"(OK|WARN|FAIL)\","
+                + "\"firmware\":(null|" + J + "),"
+                + "\"payload\":(" + iotDevicePayload + ")"
+                + "\\}";
+
+        String payrollRegex =
+            "\\{"
+                + "\"schemaVersion\":1,"
+                + "\"event_id\":\"[0-9a-f\\-]{36}\","
+                + "\"source\":\"datagen\","
+                + "\"ingested_ts\":" + ISO + ","
+                + "\"employee_id\":" + J + ","
+                + "\"payroll_id\":\"[0-9a-f\\-]{36}\","
+                + "\"period_start\":\"\\d{4}-\\d{2}-\\d{2}\","
+                + "\"period_end\":\"\\d{4}-\\d{2}-\\d{2}\","
+                + "\"currency\":\"[A-Z]{3}\","
+                + "\"salary_gross\":" + MONEY + ","
+                + "\"deductions\":\\[\\{"
+                + "\"type\":" + J + ",\"amount\":" + MONEY + "\\}"
+                + "(,\\{\"type\":" + J + ",\"amount\":" + MONEY + "\\})*\\],"
+                + "\"net_pay\":" + MONEY + ","
+                + "\"status\":\"(CALCULATED|PAID|ADJUSTED)\""
+                + "\\}";
+
+        /// ///////////
+        ///  Legacy ///
+        /// ///////////
         String peopleRegex = "\\{"
             + "\"employeeId\":\"\\d+\","
             + "\"firstName\":\"[A-Za-z']+\","
@@ -157,6 +279,17 @@ class DataGeneratorTest {
 
         return IntStream.range(0, 10000)
             .mapToObj(i -> Stream.of(
+                Arguments.of(ETemplateType.PAYMENT_EVENT.getTemplateName(), paymentEventRegex,
+                    this.paymentEventGenerator),
+                Arguments.of(ETemplateType.FLIGHT_EVENT.getTemplateName(), flightEventRegex,
+                    this.flightEventGenerator),
+                Arguments.of(ETemplateType.IOT_DEVICE_TELEMETRY_EVENT.getTemplateName(), iotDeviceTelemetryRegex,
+                    this.iotDeviceTelemetryEventGenerator),
+                Arguments.of(ETemplateType.PAYROLL_EVENT.getTemplateName(), payrollRegex,
+                    this.payrollEventGenerator),
+                /// ///////////
+                ///  Legacy ///
+                /// ///////////
                 Arguments.of(ETemplateType.PAYROLL.getTemplateName(), peopleRegex,
                     this.payrollDataGenerator),
                 Arguments.of(ETemplateType.IOT_DEVICE.getTemplateName(), iotRegex,

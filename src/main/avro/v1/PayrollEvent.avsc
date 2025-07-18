@@ -1,0 +1,114 @@
+{
+  "namespace": "io.skodjob.datagenerator.models.v1.payroll",
+  "type": "record",
+  "name": "PayrollEvent",
+  "fields": [
+    {
+      "name": "schemaVersion",
+      "type": "int",
+      "default": 1
+    },
+    {
+      "name": "event_id",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "source",
+      "type": "string"
+    },
+    {
+      "name": "ingested_ts",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "employee_id",
+      "type": "string"
+    },
+    {
+      "name": "payroll_id",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "period_start",
+      "type": {
+        "type": "int",
+        "logicalType": "date"
+      }
+    },
+    {
+      "name": "period_end",
+      "type": {
+        "type": "int",
+        "logicalType": "date"
+      }
+    },
+    {
+      "name": "currency",
+      "type": "string"
+    },
+    {
+      "name": "salary_gross",
+      "type": {
+        "type": "bytes",
+        "logicalType": "decimal",
+        "precision": 12,
+        "scale": 2
+      }
+    },
+    {
+      "name": "deductions",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "Deduction",
+          "type": "record",
+          "fields": [
+            {
+              "name": "type",
+              "type": "string"
+            },
+            {
+              "name": "amount",
+              "type": {
+                "type": "bytes",
+                "logicalType": "decimal",
+                "precision": 12,
+                "scale": 2
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "net_pay",
+      "type": {
+        "type": "bytes",
+        "logicalType": "decimal",
+        "precision": 12,
+        "scale": 2
+      }
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "PayrollStatus",
+        "symbols": [
+          "CALCULATED",
+          "PAID",
+          "ADJUSTED"
+        ]
+      }
+    }
+  ]
+}

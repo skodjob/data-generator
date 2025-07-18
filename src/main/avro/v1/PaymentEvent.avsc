@@ -1,0 +1,182 @@
+{
+  "namespace": "io.skodjob.datagenerator.models.v1.payment",
+  "type": "record",
+  "name": "PaymentEvent",
+  "fields": [
+    {
+      "name": "schemaVersion",
+      "type": "int",
+      "default": 1
+    },
+    {
+      "name": "event_id",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "source",
+      "type": "string"
+    },
+    {
+      "name": "ingested_ts",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "transaction_id",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "PaymentStatus",
+        "symbols": [
+          "PENDING",
+          "SETTLED",
+          "FAILED",
+          "REVERSED"
+        ]
+      }
+    },
+    {
+      "name": "transaction_ts",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "amount",
+      "type": {
+        "type": "bytes",
+        "logicalType": "decimal",
+        "precision": 18,
+        "scale": 2
+      }
+    },
+    {
+      "name": "currency",
+      "type": "string"
+    },
+    {
+      "name": "method",
+      "type": {
+        "type": "enum",
+        "name": "PaymentMethod",
+        "symbols": [
+          "CARD",
+          "BANK_TRANSFER",
+          "E_WALLET",
+          "CRYPTO",
+          "CASH"
+        ]
+      }
+    },
+    {
+      "name": "processor",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "parties",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "Party",
+          "type": "record",
+          "fields": [
+            {
+              "name": "party_id",
+              "type": "string"
+            },
+            {
+              "name": "party_type",
+              "type": {
+                "type": "enum",
+                "name": "PartyType",
+                "symbols": [
+                  "PERSON",
+                  "MERCHANT",
+                  "INSTITUTION"
+                ]
+              }
+            },
+            {
+              "name": "role",
+              "type": {
+                "type": "enum",
+                "name": "PartyRole",
+                "symbols": [
+                  "PAYER",
+                  "PAYEE"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "merchant_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "card_last4",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "risk_score",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "rules_triggered",
+      "type": [
+        "null",
+        {
+          "type": "array",
+          "items": "string"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "ip_address",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "ip_country",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    }
+  ]
+}
