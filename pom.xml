@@ -83,15 +83,15 @@
         <maven.assembly.version>3.7.1</maven.assembly.version>
         <sonatype.nexus.central>0.8.0</sonatype.nexus.central>
 
-        <log4j.version>2.25.0</log4j.version>
+        <log4j.version>2.25.1</log4j.version>
         <slf4j.version>2.0.13</slf4j.version>
-        <junit.jupiter.version>5.13.3</junit.jupiter.version>
-        <junit.platform.version>1.13.3</junit.platform.version>
+        <junit.jupiter.version>5.13.4</junit.jupiter.version>
+        <junit.platform.version>1.13.4</junit.platform.version>
         <maven.surefire.version>3.5.3</maven.surefire.version>
-        <datafaker.version>2.4.3</datafaker.version>
+        <datafaker.version>2.4.4</datafaker.version>
         <avro.version>1.12.0</avro.version>
 
-        <jackson-dataformat-yaml.version>2.19.1</jackson-dataformat-yaml.version>
+        <jackson-dataformat-yaml.version>2.19.2</jackson-dataformat-yaml.version>
 
         <!--   Build tools' properties     -->
         <spotbugs.version>4.9.3</spotbugs.version>
