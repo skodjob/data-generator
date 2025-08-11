@@ -94,7 +94,7 @@
         <jackson-dataformat-yaml.version>2.19.2</jackson-dataformat-yaml.version>
 
         <!--   Build tools' properties     -->
-        <spotbugs.version>4.9.3</spotbugs.version>
+        <spotbugs.version>4.9.4</spotbugs.version>
         <maven.spotbugs.version>4.9.3.2</maven.spotbugs.version>
         <maven.checkstyle.version>3.6.0</maven.checkstyle.version>
 
