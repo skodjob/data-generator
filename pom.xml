@@ -76,7 +76,7 @@
         <maven.deploy.plugin.version>3.1.4</maven.deploy.plugin.version>
         <maven.gpg.version>3.2.6</maven.gpg.version>
         <sonatype.nexus.central>0.4.0</sonatype.nexus.central>
-        <maven.javadoc.version>3.11.2</maven.javadoc.version>
+        <maven.javadoc.version>3.11.3</maven.javadoc.version>
         <maven.assembly.version>3.7.1</maven.assembly.version>
         <maven.plugin.plugin.version>3.9.0</maven.plugin.plugin.version>
         <maven.gpg.version>3.2.8</maven.gpg.version>
@@ -94,7 +94,7 @@
         <jackson-dataformat-yaml.version>2.19.2</jackson-dataformat-yaml.version>
 
         <!--   Build tools' properties     -->
-        <spotbugs.version>4.9.3</spotbugs.version>
+        <spotbugs.version>4.9.4</spotbugs.version>
         <maven.spotbugs.version>4.9.3.2</maven.spotbugs.version>
         <maven.checkstyle.version>3.6.0</maven.checkstyle.version>
 
