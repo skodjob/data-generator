@@ -133,7 +133,7 @@ public final class PaymentEventHandler extends AbstractHandler {
             highAmtLeft = Utils.rand(3, 5);
             travelLeft = Utils.rand(3, 4);
 
-            return fraudTemplate;
+            return PaymentEvent.newBuilder(fraudTemplate).build();
         }
 
         // Inject burst that contains fraud transactions
