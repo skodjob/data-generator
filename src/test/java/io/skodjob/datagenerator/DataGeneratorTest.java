@@ -65,7 +65,7 @@ class DataGeneratorTest {
 
     @ParameterizedTest(name = "{0}")
     @MethodSource("testRepeatedParameters")
-    void testValidateGeneratedData(String testName, String regex, DataGenerator generator) throws IOException {
+    void testValidateGeneratedData(String testName, String regex, DataGenerator generator) {
         Pattern dataPattern = Pattern.compile(regex);
 
         String data = generator.generateJsonData()
@@ -120,7 +120,11 @@ class DataGeneratorTest {
             + "\"party_type\":\"(PERSON|MERCHANT|INSTITUTION)\","
             + "\"role\":\"PAYEE\"\\}\\],"
             + "\"merchant_id\":(null|\"[^\"]+\"),"
-            + "\"card_last4\":(null|\"\\d{4}\")"
+            + "\"card_last4\":(null|\"\\d{4}\"),"
+            + "\"risk_score\":(null|\\d+),"
+            + "\"rules_triggered\":(null|\\[(?:\"[^\"]*\"(?:,\"[^\"]*\")*)?\\]),"
+            + "\"ip_address\":(null|\"[^\"]+\"),"
+            + "\"ip_country\":(null|\"[^\"]+\")"
             + "\\}";
 
         String flightEventRegex =
@@ -146,7 +150,7 @@ class DataGeneratorTest {
         String iotDevicePayload =
             "\\{\"button_state\":\"(PRESSED|RELEASED)\"\\}"
                 + "|\\{\"light_state\":\"(ON|OFF)\",\"brightness_pct\":(null|\\d{1,3})\\}"
-                + "|\\{\"gate_state\":\"(OPEN|CLOSED)\",\"position_pct\":\\d{1,3}\\}"
+                + "|\\{\"gate_state\":\"(OPEN|CLOSED)\",\"position_pct\":(null|\\d{1,3})\\}"
                 + "|\\{\"power_state\":\"(ON|OFF)\",\"watts\":(null|[-+]?[0-9]*\\.?[0-9]+)\\}"
                 + "|\\{\"temperature_c\":[-+]?[0-9]*\\.?[0-9]+,\"humidity_pct\":(null|[-+]?[0-9]*\\.?[0-9]+)\\}"
                 + "|\\{\"blob\":" + J + "\\}";

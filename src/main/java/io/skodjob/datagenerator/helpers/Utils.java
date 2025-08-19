@@ -16,6 +16,12 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Utils {
 
     /**
+     * Private constructor to prevent instantiation of utility class.
+     */
+    private Utils() {
+    }
+
+    /**
      * Get random int from 0 to bound value
      *
      * @param bound upper maximum

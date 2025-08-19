@@ -8,6 +8,13 @@ package io.skodjob.datagenerator.handlers;
  * Constants used across handlers and generator
  */
 public abstract class AbstractHandler {
+
+    /**
+     * Protected constructor for abstract class.
+     */
+    protected AbstractHandler() {
+    }
+
     /**
      * Generator source name for v1 events
      */
