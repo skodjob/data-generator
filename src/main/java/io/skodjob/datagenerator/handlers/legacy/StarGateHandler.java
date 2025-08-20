@@ -2,7 +2,7 @@
  * Copyright Skodjob authors.
  * License: Apache License 2.0 (see the file LICENSE or http://apache.org/licenses/LICENSE-2.0.html).
  */
-package io.skodjob.datagenerator.handlers;
+package io.skodjob.datagenerator.handlers.legacy;
 
 import io.skodjob.datagenerator.models.stargate.StarGate;
 import net.datafaker.Faker;

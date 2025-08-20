@@ -1,0 +1,240 @@
+{
+  "namespace": "io.skodjob.datagenerator.models.v1.iot",
+  "type": "record",
+  "name": "DeviceTelemetry",
+  "fields": [
+    {
+      "name": "schemaVersion",
+      "type": "int",
+      "default": 1
+    },
+    {
+      "name": "event_id",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "source",
+      "type": "string"
+    },
+    {
+      "name": "ingested_ts",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "device_id",
+      "type": "string"
+    },
+    {
+      "name": "ipv4",
+      "type": "string"
+    },
+    {
+      "name": "mac",
+      "type": "string"
+    },
+    {
+      "name": "geo",
+      "type": {
+        "type": "record",
+        "name": "GeoPoint",
+        "fields": [
+          {
+            "name": "lat",
+            "type": {
+              "type": "bytes",
+              "logicalType": "decimal",
+              "precision": 9,
+              "scale": 6
+            }
+          },
+          {
+            "name": "lon",
+            "type": {
+              "type": "bytes",
+              "logicalType": "decimal",
+              "precision": 9,
+              "scale": 6
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "sensor_type",
+      "type": {
+        "type": "enum",
+        "name": "SensorType",
+        "symbols": [
+          "LIGHT",
+          "BUTTON",
+          "THERMOMETER",
+          "PLUG",
+          "CUSTOM",
+          "GATE"
+        ]
+      }
+    },
+    {
+      "name": "battery_pct",
+      "type": "int"
+    },
+    {
+      "name": "reading_ts",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "DeviceStatus",
+        "symbols": [
+          "OK",
+          "WARN",
+          "FAIL"
+        ]
+      }
+    },
+    {
+      "name": "firmware",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "payload",
+      "type": [
+        {
+          "type": "record",
+          "name": "ButtonData",
+          "fields": [
+            {
+              "name": "button_state",
+              "type": {
+                "type": "enum",
+                "name": "ButtonState",
+                "symbols": [
+                  "PRESSED",
+                  "RELEASED"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "LightData",
+          "fields": [
+            {
+              "name": "light_state",
+              "type": {
+                "type": "enum",
+                "name": "LightState",
+                "symbols": [
+                  "ON",
+                  "OFF"
+                ]
+              }
+            },
+            {
+              "name": "brightness_pct",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null
+            }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "GateData",
+          "fields": [
+            {
+              "name": "gate_state",
+              "type": {
+                "type": "enum",
+                "name": "GateState",
+                "symbols": [
+                  "OPEN",
+                  "CLOSED"
+                ]
+              }
+            },
+            {
+              "name": "position_pct",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null
+            }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "PlugData",
+          "fields": [
+            {
+              "name": "power_state",
+              "type": {
+                "type": "enum",
+                "name": "PowerState",
+                "symbols": [
+                  "ON",
+                  "OFF"
+                ]
+              }
+            },
+            {
+              "name": "watts",
+              "type": [
+                "null",
+                "double"
+              ],
+              "default": null
+            }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "ThermoData",
+          "fields": [
+            {
+              "name": "temperature_c",
+              "type": "double"
+            },
+            {
+              "name": "humidity_pct",
+              "type": [
+                "null",
+                "double"
+              ],
+              "default": null
+            }
+          ]
+        },
+        {
+          "type": "record",
+          "name": "CustomData",
+          "fields": [
+            {
+              "name": "blob",
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

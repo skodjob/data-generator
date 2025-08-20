@@ -1,0 +1,115 @@
+{
+  "namespace": "io.skodjob.datagenerator.models.v1.aviation",
+  "type": "record",
+  "name": "FlightEvent",
+  "fields": [
+    {
+      "name": "schemaVersion",
+      "type": "int",
+      "default": 1
+    },
+    {
+      "name": "event_id",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "name": "source",
+      "type": "string"
+    },
+    {
+      "name": "ingested_ts",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "flight_id",
+      "type": "string"
+    },
+    {
+      "name": "airline",
+      "type": "string"
+    },
+    {
+      "name": "origin",
+      "type": "string"
+    },
+    {
+      "name": "destination",
+      "type": "string"
+    },
+    {
+      "name": "scheduled_departure_ts",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "scheduled_arrival_ts",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "actual_departure_ts",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "logicalType": "timestamp-millis"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "actual_arrival_ts",
+      "type": [
+        "null",
+        {
+          "type": "long",
+          "logicalType": "timestamp-millis"
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "FlightStatus",
+        "symbols": [
+          "SCHEDULED",
+          "BOARDING",
+          "TAXI",
+          "AIRBORNE",
+          "LANDED",
+          "CANCELLED",
+          "DIVERTED"
+        ]
+      }
+    },
+    {
+      "name": "delay_minutes",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null
+    },
+    {
+      "name": "gate",
+      "type": ["null","string"],
+      "default": null
+    },
+    {
+      "name": "aircraft_type",
+      "type": ["null","string"],
+      "default": null }
+  ]
+}
