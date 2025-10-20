@@ -88,14 +88,14 @@
         <junit.jupiter.version>6.0.0</junit.jupiter.version>
         <junit.platform.version>6.0.0</junit.platform.version>
         <maven.surefire.version>3.5.4</maven.surefire.version>
-        <datafaker.version>2.5.1</datafaker.version>
-        <avro.version>1.12.0</avro.version>
+        <datafaker.version>2.5.2</datafaker.version>
+        <avro.version>1.12.1</avro.version>
 
         <jackson-dataformat-yaml.version>2.20.0</jackson-dataformat-yaml.version>
 
         <!--   Build tools' properties     -->
-        <spotbugs.version>4.9.6</spotbugs.version>
-        <maven.spotbugs.version>4.9.6.0</maven.spotbugs.version>
+        <spotbugs.version>4.9.8</spotbugs.version>
+        <maven.spotbugs.version>4.9.8.1</maven.spotbugs.version>
         <maven.checkstyle.version>3.6.0</maven.checkstyle.version>
 
         <it.skip>true</it.skip>
