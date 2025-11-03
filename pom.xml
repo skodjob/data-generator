@@ -85,13 +85,13 @@
 
         <log4j.version>2.25.2</log4j.version>
         <slf4j.version>2.0.13</slf4j.version>
-        <junit.jupiter.version>6.0.0</junit.jupiter.version>
-        <junit.platform.version>6.0.0</junit.platform.version>
+        <junit.jupiter.version>6.0.1</junit.jupiter.version>
+        <junit.platform.version>6.0.1</junit.platform.version>
         <maven.surefire.version>3.5.4</maven.surefire.version>
         <datafaker.version>2.5.3</datafaker.version>
         <avro.version>1.12.1</avro.version>
 
-        <jackson-dataformat-yaml.version>2.20.0</jackson-dataformat-yaml.version>
+        <jackson-dataformat-yaml.version>2.20.1</jackson-dataformat-yaml.version>
 
         <!--   Build tools' properties     -->
         <spotbugs.version>4.9.8</spotbugs.version>
