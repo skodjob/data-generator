@@ -83,7 +83,7 @@
         <maven.assembly.version>3.8.0</maven.assembly.version>
         <sonatype.nexus.central>0.9.0</sonatype.nexus.central>
 
-        <log4j.version>2.25.2</log4j.version>
+        <log4j.version>2.25.3</log4j.version>
         <slf4j.version>2.0.13</slf4j.version>
         <junit.jupiter.version>6.0.1</junit.jupiter.version>
         <junit.platform.version>6.0.1</junit.platform.version>
