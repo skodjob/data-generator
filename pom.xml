@@ -91,7 +91,7 @@
         <datafaker.version>2.5.4</datafaker.version>
         <avro.version>1.12.1</avro.version>
 
-        <jackson-dataformat-yaml.version>2.21.1</jackson-dataformat-yaml.version>
+        <jackson-dataformat-yaml.version>2.21.2</jackson-dataformat-yaml.version>
 
         <!--   Build tools' properties     -->
         <spotbugs.version>4.9.8</spotbugs.version>
